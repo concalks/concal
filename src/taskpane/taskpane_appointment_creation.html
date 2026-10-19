@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <link rel="stylesheet"
+          href="https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/office-ui-fabric-core/11.1.0/css/fabric.min.css"/>
+    <link href="taskpane.css" rel="stylesheet" type="text/css"/>
+    <title>Füge Kontaktdetails hinzu</title>
+</head>
+<body>
+    <header>
+        <h1 class="ms-fontSize-xxl ms-fontWeight-semibold" id="heading">Kontaktinformationen</h1>
+    </header>
+    <div>
+        <button role="button" id="addContact" class="ms-Button--primary" style="margin: 1em">
+            <span class="ms-Button-label">Kontaktdaten<br/>hinzufügen</span>
+        </button>
+        <button role="button" id="exportContact" class="ms-Button--primary" style="margin: 1em">
+            <span class="ms-Button-label">Kontaktdaten<br/>exportieren</span>
+        </button>
+
+        <div class="ms-Grid-row" id="dyn" style="margin: 1em"></div>
+    </div>
+</body>
+</html>
