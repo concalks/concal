@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
-  <Id>64f9a5d1-6996-48f6-ad5e-cb98f498bfd4</Id>
+  <Id>692581d3-52df-423a-b357-48592fcee49d</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>concalks</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
@@ -23,7 +23,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://concalks.github.io/concal/src/taskpane/taskpane_appointment_creation.html"/>
+        <SourceLocation DefaultValue="https://concalks.github.io/concal/taskpane_appointment_creation.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -75,8 +75,8 @@
         <bt:Image id="Icon.80x80" DefaultValue="https://concalks.github.io/concal/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://concalks.github.io/concal/src/commands/commands.html"/>
-        <bt:Url id="CreateAppointmentTaskpane.Url" DefaultValue="https://concalks.github.io/concal/src/taskpane/taskpane_appointment_creation.html"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://concalks.github.io/concal/commands.html"/>
+        <bt:Url id="CreateAppointmentTaskpane.Url" DefaultValue="https://concalks.github.io/concal/taskpane_appointment_creation.html"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Concal"/>

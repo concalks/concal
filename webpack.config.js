@@ -6,7 +6,7 @@ const {readFileSync} = require("node:fs");
 const {resolve} = require("node:path");
 
 const urlDev = "https://localhost:3000/";
-const urlProd = ""; //TODO CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
+const urlProd = "https://concalks.github.io/concal/"; //TODO CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
 module.exports = async (env, options) => {
     const dev = options.mode === "development";
@@ -21,7 +21,7 @@ module.exports = async (env, options) => {
         devtool: "source-map",
         entry: {
             polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
-            taskpane: ["./src/taskpane/taskpane.ts", "./src/taskpane/taskpane_appointment_creation.html"],
+            taskpane: ["./src/taskpane/taskpane_appointment_creation.html"],
             commands: "./src/commands/commands.ts",
         },
         output: {
