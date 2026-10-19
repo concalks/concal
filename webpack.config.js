@@ -8,91 +8,93 @@ const {resolve} = require("node:path");
 const urlDev = "https://localhost:3000/";
 const urlProd = ""; //TODO CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
-const httpsOptions = {
-  key: readFileSync(resolve(__dirname, "localhost-key.pem")),
-  cert: readFileSync(resolve(__dirname, "localhost.pem")),
-};
-
 module.exports = async (env, options) => {
-  const dev = options.mode === "development";
-  const config = {
-    devtool: "source-map",
-    entry: {
-      polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
-      taskpane: ["./src/taskpane/taskpane.ts", "./src/taskpane/taskpane_appointment_creation.html"],
-      commands: "./src/commands/commands.ts",
-    },
-    output: {
-      clean: true,
-    },
-    resolve: {
-      extensions: [".ts", ".html", ".js"],
-    },
-    module: {
-      rules: [
-        {
-          test: /\.ts$/,
-          exclude: /node_modules/,
-          use: {
-            loader: "babel-loader"
-          },
+    const dev = options.mode === "development";
+    let httpsOptions;
+    if (dev) {
+        httpsOptions = {
+            key: readFileSync(resolve(__dirname, "localhost-key.pem")),
+            cert: readFileSync(resolve(__dirname, "localhost.pem")),
+        };
+    }
+    const config = {
+        devtool: "source-map",
+        entry: {
+            polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
+            taskpane: ["./src/taskpane/taskpane.ts", "./src/taskpane/taskpane_appointment_creation.html"],
+            commands: "./src/commands/commands.ts",
         },
-        {
-          test: /\.html$/,
-          exclude: /node_modules/,
-          use: "html-loader",
+        output: {
+            clean: true,
         },
-        {
-          test: /\.(png|jpg|jpeg|gif|ico)$/,
-          type: "asset/resource",
-          generator: {
-            filename: "assets/[name][ext][query]",
-          },
+        resolve: {
+            extensions: [".ts", ".html", ".js"],
         },
-      ],
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        filename: "taskpane_appointment_creation.html",
-        template: "./src/taskpane/taskpane_appointment_creation.html",
-        chunks: ["polyfill", "taskpane"],
-      }),
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: "assets/*",
-            to: "assets/[name][ext][query]",
-          },
-          {
-            from: "manifest*.xml",
-            to: "[name]" + "[ext]",
-            transform(content) {
-              if (dev) {
-                return content;
-              } else {
-                return content.toString().replace(new RegExp(urlDev, "g"), urlProd);
-              }
-            },
-          },
+        module: {
+            rules: [
+                {
+                    test: /\.ts$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: "babel-loader"
+                    },
+                },
+                {
+                    test: /\.html$/,
+                    exclude: /node_modules/,
+                    use: "html-loader",
+                },
+                {
+                    test: /\.(png|jpg|jpeg|gif|ico)$/,
+                    type: "asset/resource",
+                    generator: {
+                        filename: "assets/[name][ext][query]",
+                    },
+                },
+            ],
+        },
+        plugins: [
+            new HtmlWebpackPlugin({
+                filename: "taskpane_appointment_creation.html",
+                template: "./src/taskpane/taskpane_appointment_creation.html",
+                chunks: ["polyfill", "taskpane"],
+            }),
+            new CopyWebpackPlugin({
+                patterns: [
+                    {
+                        from: "assets/*",
+                        to: "assets/[name][ext][query]",
+                    },
+                    {
+                        from: "manifest*.xml",
+                        to: "[name]" + "[ext]",
+                        transform(content) {
+                            if (dev) {
+                                return content;
+                            } else {
+                                return content.toString().replace(new RegExp(urlDev, "g"), urlProd);
+                            }
+                        },
+                    },
+                ],
+            }),
+            new HtmlWebpackPlugin({
+                filename: "commands.html",
+                template: "./src/commands/commands.html",
+                chunks: ["polyfill", "commands"],
+            }),
         ],
-      }),
-      new HtmlWebpackPlugin({
-        filename: "commands.html",
-        template: "./src/commands/commands.html",
-        chunks: ["polyfill", "commands"],
-      }),
-    ],
-    devServer: {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      server: {
-        type: "https",
-        options: env.WEBPACK_BUILD || options.https !== undefined ? options.https : httpsOptions,
-      },
-      port: process.env.npm_package_config_dev_server_port || 3000,
-    },
-  };
+        devServer: {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+            },
+            server: {
+                type: "https",
+                options: env.WEBPACK_BUILD || options.https !== undefined ? options.https : httpsOptions,
+            },
+            port: process.env.npm_package_config_dev_server_port || 3000,
+        },
+    };
 
-  return config;
+    return config;
 };
