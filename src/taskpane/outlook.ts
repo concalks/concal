@@ -1,4 +1,5 @@
 /* Central Logic */
+console.log('>>> taskpane.js bundle executed');
 
 /*
     IMPORTANT!
@@ -62,7 +63,7 @@ Office.onReady((info) => {
         }
 
         Office.context.mailbox.item?.subject.getAsync(
-            function (result) {
+            function (result: any) {
                 const heading = document.getElementById("heading");
                 if (heading && result.value) {
                     heading.textContent = `Kontaktinformationen zu ${sanitizeInput(result.value)}`;
