@@ -17,10 +17,8 @@
  }
  
  .ms-welcome__header {
-    padding: 20px;
-    padding-bottom: 30px;
-    padding-top: 100px;
-    display: -webkit-flex;
+     padding: 100px 20px 30px;
+     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
     flex-direction: column;
@@ -77,4 +75,18 @@
 
 b {
     font-weight: bold;
+}
+
+.ms-Button {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.ms-Button:hover {
+    background-color: #106ebe;
+}
+.ms-Button--primary {
+    background-color: #0078d4;   /* Fabric primary blue */
+    color: #fff;
 }
