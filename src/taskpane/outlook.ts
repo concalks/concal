@@ -157,7 +157,7 @@ export function initialize(): void {
 
         let headers = "";
         if (!currentData.includes(START_HEADERS)) {
-            headers = `<div style="color: #AAAAAA;"><br><br><br>---${START_AUTOMATED}---<br>---${START_HEADERS}---<br>${contactHeaders}<br>---${END_HEADERS}---</div>`;
+            headers = `<br><br><br><div style="color: #AAAAAA;">---${START_AUTOMATED}---<br>---${START_HEADERS}---<br>${contactHeaders}<br>---${END_HEADERS}---</div>`;
         }
         const contacts = headers +
             `<div style="color: #AAAAAA;"><br>---${START_DETAILS}---<br>${contactDetails}<br>---${END_DETAILS}---</div>`;
