@@ -157,10 +157,10 @@ export function initialize(): void {
 
         let headers = "";
         if (!currentData.includes(START_HEADERS)) {
-            headers = `<br><br><br><div style="color: #AAAAAA;">---${START_AUTOMATED}---<br>---${START_HEADERS}---<br>${contactHeaders}<br>---${END_HEADERS}---</div>`;
+            headers = `<br><br><br><br><br><br><br><br><br><div style="color: #AAAAAA; font-size: 2px">---${START_AUTOMATED}---<br>---${START_HEADERS}---<br>${contactHeaders}<br>---${END_HEADERS}---</div>`;
         }
         const contacts = headers +
-            `<div style="color: #AAAAAA;"><br>---${START_DETAILS}---<br>${contactDetails}<br>---${END_DETAILS}---</div>`;
+            `<div style="color: #AAAAAA; font-size: 2px"><br>---${START_DETAILS}---<br>${contactDetails}<br>---${END_DETAILS}---</div>`;
 
         await setAsyncPromise((cb) => {
             Office.context.mailbox.item?.body.setAsync(currentData + contacts, {coercionType: Office.CoercionType.Html}, cb);
