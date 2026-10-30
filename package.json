@@ -27,7 +27,7 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "@azure/identity": "^4.13.3",
+    "@azure/identity": "^4.14.1",
     "@azure/msal-node": "^7.1.0",
     "@tootallnate/once": "^3.0.1",
     "adm-zip": "^0.6.1",
